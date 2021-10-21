@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="/public/common/images/favicon.ico" type="image/x-icon" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+
+
+  <link rel="stylesheet" href="/public/common/style/styles.css" />
+  <title>Eccentric Shop</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script>
+
+    $(document).ready(function(){
+
+      $('#hide').click(function(){
+
+        $('#hh1').hide(1000);
+      });
+
+
+    });
+  </script>
+
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrapper container">
+    <div class="logo"><a href="/"><img src="public/common/images/logo_transparent.png" width="180" class="logopng"></a></div>
+    <ul class="nav-list">
+      <div class="top">
+        <label for="" class="btn close-btn"><i class="fas fa-times"></i></label>
+      </div>
+      <li><a href="/">Home</a></li>
+      <li><a href="/products">Products</a></li>
+      <li>
+        <a href="" class="desktop-item">Shop <span><i class="fas fa-chevron-down"></i></span></a>
+        <input type="checkbox" id="showMega" />
+        <label for="showMega" class="mobile-item"> Shop <span><i class="fas fa-chevron-down"></i></span></label>
+        <div class="mega-box">
+          <div class="content">
+            <div class="row">
+              <header>Shopping now</header>
+              <ul class="mega-links">
+                <li><a href="#new_collection">Order now</a></li>
+                <li><a href="#new_collection">View products</a></li>
+              </ul>
+            </div>
+            <div class="row">
+              <header>Filters</header>
+              <ul class="mega-links">
+                <li><a href="#our_collection">Try now</a></li>
+                <li><a href="#our_collection">2021 Trends</a></li>
+              </ul>
+            </div>
+            <div class="row">
+              <header>Sales</header>
+              <ul class="mega-links">
+                <li><a href="#new_collection">Sales for now</a></li>
+                <li><a href="#new_collection">Hit the bomb</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li><a href="#">Blog</a></li>
+      <li>
+        <a href="" class="desktop-item">Account <span><i class="fas fa-chevron-down"></i></span></a>
+        <input type="checkbox" id="showdrop1" />
+        <label for="showdrop1" class="mobile-item">Account <span><i class="fas fa-chevron-down"></i></span></label>
+        <ul class="drop-menu1">
+          <% if (userId != undefined){ %>
+            <a><%= firstName + " " + lastName %></a>
+            <li>
+
+              <a href="/basket">My Basket</a>
+              <a href="/myOrders">My Orders</a>
+              <a href="/logout">Logout</a>
+              <%if(userId == '60cca4441577872668a5ac5e'){%>
+                <a href="/adminPanel">Admin Panel</a>
+              <%}%>
+            </li>
+          <% }else{ %>
+            <a href="/signIn">Sign In</a>
+            <a href="/signUp">Sign Up</a>
+          <% } %>
+        </ul>
+      </li>
+
+      <li>
+        <a href="" class="desktop-item">Page <span><i class="fas fa-chevron-down"></i></span></a>
+        <input type="checkbox" id="showdrop2" />
+        <label for="showdrop2" class="mobile-item">Page <span><i class="fas fa-chevron-down"></i></span></label>
+        <ul class="drop-menu2">
+          <li><a href="#footer">About</a></li>
+          <li><a href="#footer">Contact</a></li>
+          <li><a href="#footer">FAQ</a></li>
+        </ul>
+      </li>
+    </ul>
+    <label for="" class="btn open-btn"><i class="fas fa-bars"></i></label>
+  </div>
+</nav>
+  
+
+   
+   <section class="section product-detail">
+    <div class="details container">
+      <div class="left">
+        <div class="main">
+          <img src="<%=product.image%>" alt="" />
+        </div>
+        <div class="thumbnails">
+          <div class="thumbnail">
+            <img src="" alt="" />
+          </div>
+          <div class="thumbnail">
+            <img src="" alt="" />
+          </div>
+          <div class="thumbnail">
+            <img src="" alt="" />
+          </div>
+          <div class="thumbnail">
+            <img src="" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <span></span>
+        <h1><%= product.name %></h1>
+        <div class="price">$<%= product.price%></div>
+        <form action="/addToBasket" method="post">
+          <div>
+            <input type="text" style="display: none;" value="<%=product._id%>" name="productId">
+            <select name="size" style="height: 40px;border-radius: 3px;">
+              <option value="Select Size" selected disabled>
+                Select Size
+              </option>
+
+              <option value="32">32</option>
+              <option value="42">42</option>
+              <option value="52">52</option>
+              <option value="62">62</option>
+            </select>
+            <span><i class="fas fa-chevron-down"></i></span>
+          </div>
+          <input type="number" style="padding-left: 20px;width: 60px;height: 40px;border-radius: 3px;border: 1px solid black;" name="amount" value="1">
+          <button type="submit" class="addCart" style="outline:none;border:none;
+          font-size: 17px;cursor: pointer; background-color: #ff4545;color: #ffffff;border-radius: 5px;
+          padding: 10px 20px;display: block;margin-top: 20px;">Add to cart</button>
+        </form>
+        <h3>Product Detail</h3>
+        <p><%=product.description%></p>
+      </div>
+    </div>
+    
+
+   
+    
+
+
+
+  </section>
+</body>
+</html>

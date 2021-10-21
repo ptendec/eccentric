@@ -1,0 +1,5 @@
+{
+  "port": 5000,
+  "mongoURI":"mongodb+srv://Rassul:Bahaerashera1755@@cluster0.p70wb.mongodb.net/shop?retryWrites=true&w=majority",
+  "jwtSecret": "Rassul Web Technologies"
+}

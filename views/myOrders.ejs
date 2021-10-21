@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="public/common/images/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="public/common/style/styles.css" />
+    <title>Eccentric shop</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+
+        $(document).ready(function(){
+
+            $('#hide').click(function(){
+
+                $('#hh1').hide(1000);
+            });
+
+
+        });
+    </script>
+
+</head>
+<body>
+
+<nav class="nav">
+    <div class="wrapper container">
+        <div class="logo"><a href="/"><img src="public/common/images/logo_transparent.png" width="180" class="logopng"></a></div>
+        <ul class="nav-list">
+            <div class="top">
+                <label for="" class="btn close-btn"><i class="fas fa-times"></i></label>
+            </div>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Products</a></li>
+            <li>
+                <a href="" class="desktop-item">Shop <span><i class="fas fa-chevron-down"></i></span></a>
+                <input type="checkbox" id="showMega" />
+                <label for="showMega" class="mobile-item"> Shop <span><i class="fas fa-chevron-down"></i></span></label>
+                <div class="mega-box">
+                    <div class="content">
+                        <div class="row">
+                            <header>Shopping now</header>
+                            <ul class="mega-links">
+                                <li><a href="#new_collection">Order now</a></li>
+                                <li><a href="#new_collection">View products</a></li>
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <header>Filters</header>
+                            <ul class="mega-links">
+                                <li><a href="#our_collection">Try now</a></li>
+                                <li><a href="#our_collection">2021 Trends</a></li>
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <header>Sales</header>
+                            <ul class="mega-links">
+                                <li><a href="#new_collection">Sales for now</a></li>
+                                <li><a href="#new_collection">Hit the bomb</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li><a href="#">Blog</a></li>
+            <li>
+                <a href="" class="desktop-item">Account <span><i class="fas fa-chevron-down"></i></span></a>
+                <input type="checkbox" id="showdrop1" />
+                <label for="showdrop1" class="mobile-item">Account <span><i class="fas fa-chevron-down"></i></span></label>
+                <ul class="drop-menu1">
+                    <% if (userId != undefined){ %>
+                        <a><%= firstName + " " + lastName %></a>
+                        <li>
+
+                            <a href="/basket">My Basket</a>
+                            <a href="/myOrders">My Orders</a>
+                            <a href="/logout">Logout</a>
+                            <%if(userId == '60cca4441577872668a5ac5e'){%>
+                                <a href="/adminPanel">Admin Panel</a>
+                            <%}%>
+                        </li>
+                    <% }else{ %>
+                        <a href="/signIn">Sign In</a>
+                        <a href="/signUp">Sign Up</a>
+                    <% } %>
+                </ul>
+            </li>
+
+            <li>
+                <a href="" class="desktop-item">Page <span><i class="fas fa-chevron-down"></i></span></a>
+                <input type="checkbox" id="showdrop2" />
+                <label for="showdrop2" class="mobile-item">Page <span><i class="fas fa-chevron-down"></i></span></label>
+                <ul class="drop-menu2">
+                    <li><a href="#footer">About</a></li>
+                    <li><a href="#footer">Contact</a></li>
+                    <li><a href="#footer">FAQ</a></li>
+                </ul>
+            </li>
+        </ul>
+        <label for="" class="btn open-btn"><i class="fas fa-bars"></i></label>
+    </div>
+</nav>
+<section style="margin-top: 200px;" class="basket">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>My Orders</h1>
+            </div>
+            <%for(let i = 0; i < products.length; i++){%>
+            <div class="col-lg-3">
+                <img style="width: 200px;margin-top: 30px;" src="<%=products[i].product[0].image%>" alt="">
+            </div>
+            <div style="padding-top: 40px;padding-left: 30px;margin-bottom: 50px;" class="col-lg-8">
+                <p style="font-size: 20px;"><%=products[i].product[0].name%></p>
+                <p style="display: inline-block;">Total: </p> <p style="font-size: 18px;color: #ff4545;display: inline-block"> $<%=(products[i].product[0].price*products[i].amount)+3%></p>
+                <p>Amount: <%=products[i].amount%></p>
+                <p>Size: <%=products[i].size%></p>
+                <p>Status of order: <%=products[i].status%></p>
+            </div>
+            <hr>
+            <%}%>
+        </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>
